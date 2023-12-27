@@ -1,0 +1,95 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+using std::cout;
+using std::cin;
+
+void encrypt()
+   {
+     char text[100];
+     char temp;
+  int i, key;
+  
+  std::cout <<"Enter message: " << "\n";
+  std::cin >>text;
+  std::cout <<"Enter keysize:" << "\n";
+ std::cin >> key;
+  for(i = 0; text[i] != '\0'; ++i){
+    temp = text[i];
+    if(temp >= 'a' && temp <= 'z'){
+      temp = temp + key;
+      
+      if(temp > 'z'){
+        temp = temp - 'z' + 'a' - 1;
+      }
+      
+      text[i] = temp;
+    }
+    else if(temp >= 'A' && temp <= 'Z'){
+      temp = temp + key;
+      
+      if(temp > 'Z'){
+        temp = temp - 'Z' + 'A' - 1;
+      }
+      
+      text[i] = temp;
+    }
+  }
+  
+  std::cout << "Encrypted message:" << text;
+}
+
+void decrypt()
+{
+    char text[100];
+    char temp;
+  int i, key;
+  std::cout <<"Enter message: " <<endl;
+  std::cin >>text;
+  std::cout <<"Enter keysize: " <<endl;
+  std::cin >> key;
+  for(i = 0; text[i] != '\0'; ++i){
+    temp = text[i];
+    if(temp >= 'a' && temp <= 'z'){
+      temp = temp - key;
+      
+      if(temp < 'a'){
+        temp = temp + 'z' - 'a' + 1;
+      }
+      
+      text[i] = temp;
+    }
+    else if(temp >= 'A' && temp <= 'Z'){
+      temp = temp - key;
+      
+      if(temp < 'A'){
+        temp = temp + 'Z' - 'A' + 1;
+      }
+      
+      text[i] = temp;
+    }
+  }
+  
+  std::cout << "Decrypted message:" << text;
+  
+}
+ 
+int main()
+{
+ string option;
+  std::cout << "Encrypt or Decrypt?";
+  std::cin >> option;
+  if(option == "Encrypt"){
+  encrypt();
+}
+else if(option == "Decrypt"){ 
+decrypt();
+}
+else{
+    cout << "Invalid";
+        
+  }
+  
+  
+  return 0;
+}
